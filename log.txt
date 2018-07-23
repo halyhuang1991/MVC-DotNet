@@ -1,2 +1,10 @@
 dotnet new mvc
 dotnet run
+
+
+echo "# MVC-DotNet" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:halyhuang1991/MVC-DotNet.git
+git push -u origin master
