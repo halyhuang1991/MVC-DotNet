@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVC_DotNet</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container body-content">
+        123232334343434334343
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2018 - MVC_DotNet</p>
+        </footer>
+    </div>
+<div>@RenderSection("SubMenu",required: false)</div>
+@RenderSection("Scripts", required: false)
+</body>
+</html>
