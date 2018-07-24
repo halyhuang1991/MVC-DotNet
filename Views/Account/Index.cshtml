@@ -1,0 +1,39 @@
+@{ ViewData["Title"] = "Login Page"; }
+
+
+
+<div class="input-group">
+    <input type="text" class="form-control" id="username" value="halyhuang" placeholder="username">
+    <input type="password" name="" id="input${1/(\w+)/\u\1/g}" value="112233" class="form-control" required="required" title="">
+
+    <div class="clearfix">
+    </div>
+    <span class="input-group-btn" style="float: left;">
+        <button id="go" type="button" class="btn btn-default">Go!</button>
+    </span>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('#go').click(function() {
+            var username = $('username').val();
+            var password = $('password').val();
+            $.ajax({
+                type: 'Post',
+                data: {
+                    password: '112233',
+                    username: 'halyhuang'
+                },
+                url: '@Url.Action("Login", "Account")',
+                dataType: "text",
+                success: function(data) {
+                    //console.log(data);
+                    location.href = data;
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        })
+        //'/Account/Login',
+    })()
+</script>

@@ -1,21 +1,57 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿ @section SubMenu { Hello This is a section implement in About View. } @{ ViewData["Title"] = "Home Page"; } @using System @using MVC_DotNet.Models @{ var joe = new {username="Joe", age=33}; }
 
-@section SubMenu{
-    Hello This is a section implement in About View.
-}
+<p>Age of new obj is @(joe.age)</p>
+<hr/>
 <form action="" method="POST" class="form-horizontal" role="form">
-        <div class="form-group">
-            <legend>Form title</legend>
-        </div>
-        <area>sdsdsdsds<area>
-        
-        <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-</form>
+    <div class="form-group">
+        <legend>Form title</legend>
+    </div>
+    <area>index area<area>
 
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+<hr/>
+<h1>your username is @(Model==null?"ok":Model.username)</h1>
+<hr/>
+<h2>currrent time is @DateTime.Now</h2>
+<p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
 </div>
+<script type="text/javascript">
+    $(function() {
+        $.ajax({
+            type: 'GET',
+            data: {
+                id: 78
+            },
+            url: '/Myhome/jsontest',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(err) {
+                console.log(err.statusText);
+            }
+        });
+        $.ajax({
+            type: 'Post',
+            data: {
+                id: 78,
+                username: 'halyhuang'
+            },
+            url: '/Myhome/SaveUser',
+            dataType: "text",
+            success: function(data) {
+                console.log(data);
+            },
+            error: function() {
+                alert("SaveUser不执行");
+            }
+        });
+    })
+</script>
