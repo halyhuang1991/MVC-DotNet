@@ -7,13 +7,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVC_DotNet.Models;
+using StackExchange.Redis;
+
 namespace MVC_DotNet.Controllers
 {
     public class MyhomeController:Controller
     {
+        public readonly IConnectionMultiplexer _connect ;
+
+        public MyhomeController(IConnectionMultiplexer connect){
+            _connect = connect;        
+        }
+
+       
         [AllowAnonymous]
          public IActionResult Index()
         {//http://localhost:5000/Myhome
+           HashEntry[] hs=new HashEntry[]{};
+           hs.Append(new HashEntry("as","sds"));
+           hs.Append(new HashEntry("as1","sds"));
+            _connect.GetDatabase().StringSet("session","ok");
+            string value=_connect.GetDatabase().StringGet("session").ToString();
             ClaimsIdentity claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
             UserModel user=new UserModel();
              user.username ="halyhuang";

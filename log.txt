@@ -8,3 +8,6 @@ git add README.md
 git commit -m "first commit"
 git remote add origin git@github.com:halyhuang1991/MVC-DotNet.git
 git push -u origin master
+
+
+dotnet add package Microsoft.AspNetCore.DataProtection.Redis --version 0.1.0 
