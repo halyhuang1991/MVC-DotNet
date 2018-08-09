@@ -14,11 +14,12 @@ namespace MVC_DotNet.Controllers
     public class MyhomeController:Controller
     {
         public readonly IConnectionMultiplexer _connect ;
-
-        public MyhomeController(IConnectionMultiplexer connect){
-            _connect = connect;        
+         public readonly IOperation _Iop ;
+        public MyhomeController(IConnectionMultiplexer connect,IOperation iop){
+            _connect = connect;    
+             _Iop = iop;            
         }
-
+        
        
         [AllowAnonymous]
          public IActionResult Index()
@@ -28,6 +29,7 @@ namespace MVC_DotNet.Controllers
            hs.Append(new HashEntry("as1","sds"));
             _connect.GetDatabase().StringSet("session","ok");
             string value=_connect.GetDatabase().StringGet("session").ToString();
+            _Iop.run();
             ClaimsIdentity claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
             UserModel user=new UserModel();
              user.username ="halyhuang";

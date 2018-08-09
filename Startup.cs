@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Session;
 using Microsoft.Extensions.Caching.Redis;
 using Microsoft.AspNetCore.DataProtection.AzureStorage;
+using MVC_DotNet.Models;
+
 namespace MVC_DotNet
 {
     public class Startup
@@ -37,15 +39,15 @@ namespace MVC_DotNet
             //services.AddSession();
             var redisConn="127.0.0.1:6379";
             var redis = StackExchange.Redis.ConnectionMultiplexer.Connect(redisConn);
-           
-             services.AddSingleton(redis as StackExchange.Redis.IConnectionMultiplexer);
+            
+             services.AddSingleton(redis as StackExchange.Redis.IConnectionMultiplexer);//在所有的地方所有的请求会话创建的都是相同的
              services.AddDistributedRedisCache(option =>
             {       
 
                    //redis 数据库连接字符串
                    option.Configuration = redisConn;
                    //redis 实例名
-                  option.InstanceName = "master";//hash值由master
+                  option.InstanceName = "master";//hash值有master
               });
             // services.AddDistributedSqlServerCache(o =>
             //   {
@@ -57,6 +59,8 @@ namespace MVC_DotNet
             // {
             //     o.IdleTimeout = TimeSpan.FromSeconds(1800);
             // });
+              services.AddScoped<IOperation,bar>();//每一个不同的会话创建一个不同的实例
+              //AddTransient 每一个服务和每个控制器都创建一个不同的实例
               services.AddSession();
         }
 
