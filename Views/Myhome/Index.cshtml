@@ -2,11 +2,11 @@
 
 <p>Age of new obj is @(joe.age)</p>
 <hr/>
-<form action="" method="POST" class="form-horizontal" role="form">
+<form action="" method="get" class="form-horizontal" role="form">
     <div class="form-group">
         <legend>Form title</legend>
     </div>
-    <area>index area<area>
+    <area>@(ViewData["Title"])<area>
 
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
@@ -14,11 +14,19 @@
         </div>
     </div>
 </form>
-<hr/>
-<h1>your username is @(Model==null?"ok":Model.username)</h1>
-<hr/>
-<h2>currrent time is @DateTime.Now</h2>
-<p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
+
+<div class="container">
+    <hr/>
+    <span>your username is @(Model==null?"ok":Model.username)</span>
+    <hr/>
+    <span>currrent time is @DateTime.Now</span>
+    <span>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</span>
+</div>
+
+<div class="container" id="part">
+
+</div>
+
 </div>
 <script type="text/javascript">
     $(function() {
@@ -36,6 +44,22 @@
             },
             error: function(err) {
                 console.log(err.statusText);
+                location.href = "/account/index";
+            }
+        });
+        $.ajax({
+            type: 'Post',
+            data: {
+                id: 78,
+                username: 'halyhuang'
+            },
+            url: '/Myhome/part',
+            dataType: "html",
+            success: function(data) {
+                $("#part").append(data);
+            },
+            error: function() {
+                alert("part不执行");
             }
         });
         $.ajax({

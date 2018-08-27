@@ -30,7 +30,8 @@ namespace MVC_DotNet.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View();
+            
+             return View();
         }
 
         public IActionResult Error()

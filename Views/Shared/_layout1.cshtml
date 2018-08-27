@@ -7,14 +7,19 @@
     <title>@ViewData["Title"] - MVC_DotNet</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <!--[if lt IE 9]>
+    　 <script src="~/lib/h5/dist/html5shiv.min.js"></script>
+       <script src="~/lib/h5/dist/respond.js"></script>
+    <![endif]-->
 </head>
 
 <body>
     <div class="container body-content">
-        this is layout header! @RenderBody()
-        <hr />
+        this is layout header!
+        <hr /> @RenderBody()
         <footer>
             <p>&copy; 2018 - MVC_DotNet</p>
         </footer>

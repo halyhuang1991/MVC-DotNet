@@ -40,7 +40,8 @@ namespace MVC_DotNet.Controllers
         }
         public IActionResult Login()
         {//http://localhost:5000/Myhome/Login
-            
+             string value=_connect.GetDatabase().StringGet("session").ToString();
+             if(value=="ok")return RedirectToAction("Index");
             return View();
         }
         [Authorize]
@@ -53,11 +54,22 @@ namespace MVC_DotNet.Controllers
          [HttpPost]
         public ContentResult SaveUser(Models.UserModel userModel)
         {
-          
+           ViewData["Message"] = "Your contact page.";
             string user = userModel.username;
             return Content("Save Complete!");
            
         }
-         
+         public IActionResult part()
+        {
+            ViewData["Message"] = "Your contact page.";
+            List<UserModel> list=new List<UserModel>();
+            for (int i = 0; i < 4; i++)
+            {
+                list.Add(new UserModel { id = i,username = "名称_"+i});
+            }
+              return PartialView(list);
+        }
+       
+
     }
 }

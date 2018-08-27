@@ -54,7 +54,7 @@ namespace MVC_DotNet.Controllers
 
                 }catch(Exception ex){
                     Console.WriteLine(ex.Message);
-                    return Ok("/Myhome/Login");
+                   return Ok("/Myhome/Login");
                   //return RedirectToAction("Login", "MyHome");
                 }
                

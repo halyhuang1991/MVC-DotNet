@@ -10,12 +10,10 @@
     </span>
 </div>
 <script type="text/javascript">
-    $(function() {
-        $('#go').click(funcion() {
-            var username = $('username').val();
-            var password = $('password').val();
-            document.cookie = 'username:' + username;
-            document.cookie = 'password:' + password;
-        })
-    })
+    $('#go').click(function() {
+        var username = $('username').val();
+        var password = $('password').val();
+        document.cookie = 'username:' + username;
+        document.cookie = 'password:' + password;
+    });
 </script>
