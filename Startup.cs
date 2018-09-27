@@ -48,7 +48,7 @@ namespace MVC_DotNet
                    option.Configuration = redisConn;
                    //redis 实例名
                   option.InstanceName = "master";//hash值有master
-              });
+              });//session用redis
             // services.AddDistributedSqlServerCache(o =>
             //   {
             //       o.ConnectionString = "server=10.1.1.10;database=aaaaa;uid=sa;pwd=P@ssw0rd;";
