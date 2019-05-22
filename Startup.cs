@@ -61,6 +61,9 @@ namespace MVC_DotNet
             // });
               services.AddScoped<IOperation,bar>();//每一个不同的会话创建一个不同的实例
               //AddTransient 每一个服务和每个控制器都创建一个不同的实例
+              //AddSingleton 创建的对象在所有的地方所有的请求会话创建的都是相同的
+                //services.AddSingleton<IOperationSingleton, Operation>();
+                // services.AddSingleton<IOperationSingletonInstance>(new Operation(Guid.Empty));
               services.AddSession();
         }
 
