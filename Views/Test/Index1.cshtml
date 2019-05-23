@@ -1,0 +1,42 @@
+﻿ @section SubMenu { Hello This is a section implement in About View. } @{ ViewData["Title"] = "Home Page"; } @using System
+
+<h2></h2>
+<table class="table table-striped table-hover" data-striped="true" data-height="500" data-toggle="table">
+    <tbody>
+        @foreach (var item in ViewData["books"] as List
+        <MVC_DotNet.Models.book>) {
+            <tr>
+                <td class="checkBox">
+                    <input name="ids[]" type="checkbox" value="" />
+                </td>
+                <td>
+                    @item.id
+                </td>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    <!-- @Html.ActionLink("编辑", "Edit", new { id = item.id }) | @Html.ActionLink("删除", "Delete", new { id = item.id }) -->
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>
+<div class="clearfix"></div>
+<div align="center" class="paginator">
+    <span>
+        @Html.ShowPageNavigate((MVC_DotNet.Models.PagerInfo)ViewData["PagerInfo"]);
+       </span>
+</div>
+
+
+@{ string ss = "123"; } string转int：@System.Convert.ToInt32(ss)
+
+
+<script type="text/javascript">
+    $(function() {
+        var json = @Html.Raw(Json.Serialize(ViewData["PagerInfo"]));
+        // var str = '<%= ViewData["PagerInfo"] %>';
+        console.log(json);
+    })
+</script>

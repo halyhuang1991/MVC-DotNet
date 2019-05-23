@@ -4,6 +4,8 @@ using System.Linq;
 using MVC_DotNet.Models;
 using Microsoft.EntityFrameworkCore;
 using MVC_DotNet.core;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace MVC_DotNet.Controllers
 {
@@ -64,6 +66,33 @@ namespace MVC_DotNet.Controllers
                 return RedirectToAction("Index");
             }
             return View(order);
+        }
+         public ActionResult DetailPart(){
+             List<book> ls=db.book.ToList();
+             return View("~/Views/Shared/part.cshtml",ls);
+         }
+        public ActionResult Index1(int? pageSize, int? pageIndex)
+        {
+            int pageIndex1 = pageIndex ?? 1;
+            int pageSize1 = pageSize ?? 5;
+            int count = 0;
+            //从数据库在取得数据，并返回总记录数
+            BaseDal<book> newsSer=new BaseDal<book>(db);
+            var temp = newsSer.LoadPageEntities<int>(pageSize1, pageIndex1, 
+            out count, t=>true, tempbook=>tempbook.id,true);
+            PagerInfo pager = new PagerInfo();
+            pager.CurrentPageIndex = pageIndex1;
+            pager.PageSize = pageSize1;
+            pager.RecordCount = count;
+            PagerQuery<PagerInfo, IQueryable<book>> query = new PagerQuery<PagerInfo, IQueryable<book>>(pager, temp);
+            ViewData["PagerInfo"]=query.Pager;
+            ViewData["books"]=query.EntityList.ToList();
+            return PartialView(query);
+        }
+        public ActionResult usersList() //返回类型也可写 JsonResult
+        {
+            var List = db.book.Select(x => new { CustomerID = x.id, ContactName = x.name }).ToList();
+            return Json(List);
         }
          protected override void Dispose(bool disposing)
         {
