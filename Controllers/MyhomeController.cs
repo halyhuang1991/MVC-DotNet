@@ -69,6 +69,19 @@ namespace MVC_DotNet.Controllers
             }
               return PartialView(list);
         }
+         public IActionResult MultiView(int? id)
+        {
+            if (id == null)
+            {//http://localhost:5000/Myhome/MultiView
+                return View();
+            }
+            else
+            {//http://localhost:5000/Myhome/MultiView/1
+            //http://localhost:5000/Myhome/MultiView?id=1
+                return View("MultiView1");
+            }
+              
+        }
        
 
     }
