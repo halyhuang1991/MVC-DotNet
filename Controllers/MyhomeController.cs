@@ -11,7 +11,7 @@ using StackExchange.Redis;
 
 namespace MVC_DotNet.Controllers
 {
-    public class MyhomeController:Controller
+        public class MyhomeController:Controller
     {
         public readonly IConnectionMultiplexer _connect ;
          public readonly IOperation _Iop ;
@@ -77,7 +77,7 @@ namespace MVC_DotNet.Controllers
             }
               return PartialView(list);
         }
-         public IActionResult MultiView(int? id)
+        public IActionResult MultiView(int? id)
         {
             if (id == null)
             {//http://localhost:5000/Myhome/MultiView
@@ -90,14 +90,5 @@ namespace MVC_DotNet.Controllers
             }
               
         }
-       
-
-    }
-}                return View("MultiView1");
-            }
-              
-        }
-       
-
     }
 }

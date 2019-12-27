@@ -1,3 +1,4 @@
+using System.Threading;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -6,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using MVC_DotNet.core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using RabbitMQ.Client;
+using System.Text;
+using RabbitMQ.Client.Events;
 
 namespace MVC_DotNet.Controllers
 {
@@ -15,6 +19,67 @@ namespace MVC_DotNet.Controllers
         {
             //Console.Write(value);
             return View(db.book.ToList());
+        }
+        public JsonResult RabbitProduct(string input){
+            //$.get("Test/RabbitProduct?input=ok",function(data){console.log(data)})
+                    ConnectionFactory factory = new ConnectionFactory
+                    {
+                        UserName = "haly",//用户名
+                        Password = "haly",//密码
+                        HostName = "192.168.10.135"//rabbitmq ip
+                    };
+
+                    //创建连接
+                    var connection = factory.CreateConnection();
+                    //创建通道
+                    var channel = connection.CreateModel();
+                    //声明一个队列
+                    channel.QueueDeclare("hello", false, false, false, null);
+
+                    Console.WriteLine("\nRabbitMQ连接成功，请输入消息，输入exit退出！");
+
+                    var sendBytes = Encoding.UTF8.GetBytes(input);
+                        //发布消息
+                     
+                     channel.BasicPublish("", "hello", null, sendBytes);
+
+                    channel.Close();
+                    connection.Close();
+                    return Json(new {returnObj="",msg="ok"});
+        }
+        public JsonResult RabbitConsume(){
+            //$.get("Test/RabbitConsume",function(data){console.log(data)})
+                    ConnectionFactory factory = new ConnectionFactory
+                    {
+                        UserName = "haly",//用户名
+                        Password = "haly",//密码
+                        HostName = "192.168.10.135"//rabbitmq ip
+                    };
+
+                    //创建连接
+                    var connection = factory.CreateConnection();
+                    //创建通道
+                    var channel = connection.CreateModel();
+                    string queueName="hello";
+                    //事件基本消费者
+                        EventingBasicConsumer consumer = new EventingBasicConsumer(channel);
+
+                        //接收到消息事件
+                        consumer.Received += (ch, ea) =>
+                        {
+                            var message = Encoding.UTF8.GetString(ea.Body);
+
+                            Console.WriteLine($"Queue:{queueName}收到消息： {message}");
+                            //确认该消息已被消费
+                            channel.BasicAck(ea.DeliveryTag, false);
+                        };
+                        //启动消费者 设置为手动应答消息
+                        channel.BasicConsume(queueName, false, consumer);
+                        Console.WriteLine($"Queue:{queueName}，消费者已启动");
+                    Thread.Sleep(10);
+                    channel.Close();
+                    connection.Close();
+                    return Json(new {returnObj="",msg="ok"});
         }
         public ActionResult Detail(int id = 0)
         {
