@@ -24,18 +24,26 @@ namespace MVC_DotNet.Controllers
         [AllowAnonymous]
          public IActionResult Index()
         {//http://localhost:5000/Myhome
-           HashEntry[] hs=new HashEntry[]{};
-           hs.Append(new HashEntry("as","sds"));
-           hs.Append(new HashEntry("as1","sds"));
-            _connect.GetDatabase().StringSet("session","ok");
-            string value=_connect.GetDatabase().StringGet("session").ToString();
+            HashEntry[] hs = new HashEntry[] { };
+            hs.Append(new HashEntry("as", "sds"));
+            hs.Append(new HashEntry("as1", "sds"));
+            try
+            {
+
+                _connect.GetDatabase().StringSet("session", "ok");
+                string value = _connect.GetDatabase().StringGet("session").ToString();
+            }
+            catch
+            {
+
+            }
             _Iop.run();
             ClaimsIdentity claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
-            UserModel user=new UserModel();
-             user.username ="halyhuang";
-             user.id=1;
-             user.password ="ok";
-           
+            UserModel user = new UserModel();
+            user.username = "halyhuang";
+            user.id = 1;
+            user.password = "ok";
+             
             return View(user);
         }
         public IActionResult Login()
@@ -65,7 +73,7 @@ namespace MVC_DotNet.Controllers
             List<UserModel> list=new List<UserModel>();
             for (int i = 0; i < 4; i++)
             {
-                list.Add(new UserModel { id = i,username = "名称_"+i});
+                list.Add(new UserModel { id = i,username = "???_"+i});
             }
               return PartialView(list);
         }
@@ -79,6 +87,13 @@ namespace MVC_DotNet.Controllers
             {//http://localhost:5000/Myhome/MultiView/1
             //http://localhost:5000/Myhome/MultiView?id=1
                 return View("MultiView1");
+            }
+              
+        }
+       
+
+    }
+}                return View("MultiView1");
             }
               
         }
