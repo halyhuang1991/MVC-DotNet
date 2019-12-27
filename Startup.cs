@@ -36,19 +36,21 @@ namespace MVC_DotNet
                 o.AccessDeniedPath = new PathString("/Home/Error");
             });
             services.AddMvc();//这个放后面
-            //services.AddSession();
-            var redisConn="127.0.0.1:6379";
+            services.AddSession();
+            var redisConn = "192.168.10.135:6379";
             var redis = StackExchange.Redis.ConnectionMultiplexer.Connect(redisConn);
-            
-             services.AddSingleton(redis as StackExchange.Redis.IConnectionMultiplexer);//在所有的地方所有的请求会话创建的都是相同的
-             services.AddDistributedRedisCache(option =>
-            {       
 
-                   //redis 数据库连接字符串
-                   option.Configuration = redisConn;
-                   //redis 实例名
-                  option.InstanceName = "master";//hash值有master
-              });//session用redis
+            services.AddSingleton(redis as StackExchange.Redis.IConnectionMultiplexer);//在所有的地方所有的请求会话创建的都是相同的
+            services.AddDistributedRedisCache(option =>
+           {
+
+                //redis 数据库连接字符串
+                option.Configuration = redisConn;
+                //redis 实例名
+                option.InstanceName = "master";//hash值有master
+            });
+              
+              //session用redis
             // services.AddDistributedSqlServerCache(o =>
             //   {
             //       o.ConnectionString = "server=10.1.1.10;database=aaaaa;uid=sa;pwd=P@ssw0rd;";

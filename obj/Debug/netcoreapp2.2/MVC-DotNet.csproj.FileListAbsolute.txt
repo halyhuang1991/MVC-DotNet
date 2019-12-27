@@ -1,0 +1,13 @@
+e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\appsettings.Development.json
+e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\appsettings.json
+e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\bundleconfig.json
+E:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\MVC-DotNet.deps.json
+E:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\MVC-DotNet.runtimeconfig.json
+E:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\MVC-DotNet.runtimeconfig.dev.json
+e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\MVC-DotNet.dll
+e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\MVC-DotNet.pdb
+e:\Test\MVC-DotNet\obj\Debug\netcoreapp2.2\MVC-DotNet.csprojAssemblyReference.cache
+e:\Test\MVC-DotNet\obj\Debug\netcoreapp2.2\MVC-DotNet.AssemblyInfoInputs.cache
+e:\Test\MVC-DotNet\obj\Debug\netcoreapp2.2\MVC-DotNet.AssemblyInfo.cs
+e:\Test\MVC-DotNet\obj\Debug\netcoreapp2.2\MVC-DotNet.dll
+e:\Test\MVC-DotNet\obj\Debug\netcoreapp2.2\MVC-DotNet.pdb
