@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "Lucene.Net": {
+              "target": "Package",
+              "version": "[3.0.3, )"
+            },
             "Microsoft.AspNetCore.All": {
               "target": "Package",
               "version": "[2.0.6, )"
@@ -62,6 +66,14 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[5.1.2, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "jieba.NET": {
+              "target": "Package",
+              "version": "[0.39.1, )"
             }
           },
           "imports": [
