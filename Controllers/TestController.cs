@@ -18,7 +18,11 @@ namespace MVC_DotNet.Controllers
         public IActionResult Index()
         {
             //Console.Write(value);
-            return View(db.book.ToList());
+            //CallContext.SetData("DB",null);
+            BaseDal<book> bookbll=new BaseDal<book>(db);
+            var a=bookbll.GetList((x)=>true).ToList();
+            var b=db.book.ToList();
+            return View(b);
         }
         public JsonResult RabbitProduct(string input){
             //$.get("Test/RabbitProduct?input=ok",function(data){console.log(data)})
@@ -91,7 +95,7 @@ namespace MVC_DotNet.Controllers
             return View(order);
         }
         public ActionResult Detailq(book book1)
-        {
+        {//http://localhost:5000/Test/Detailq?id=1&name=213
             if (ModelState.IsValid)
             {
                 book order = db.book.Find(book1.id);
@@ -109,7 +113,7 @@ namespace MVC_DotNet.Controllers
         }
 
         public ActionResult DetailAdd(book order)
-        {
+        {//$.get('/Test/DetailAdd?id=1&name=213',function(){})
             if(order.id==0)return View(order);
             if (ModelState.IsValid)
             {
@@ -158,6 +162,10 @@ namespace MVC_DotNet.Controllers
         {
             var List = db.book.Select(x => new { CustomerID = x.id, ContactName = x.name }).ToList();
             return Json(List);
+        }
+        public JsonResult GetConf(){
+
+            return Json(new {msg="",result=""});
         }
          protected override void Dispose(bool disposing)
         {

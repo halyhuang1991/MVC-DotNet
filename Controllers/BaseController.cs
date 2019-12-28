@@ -7,6 +7,7 @@ namespace MVC_DotNet.Controllers
 {
     public class BaseController: Controller
     {
+         
         public BooksContext db
         {
             get

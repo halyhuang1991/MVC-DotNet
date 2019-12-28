@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace MVC_DotNet.core
@@ -28,7 +30,25 @@ namespace MVC_DotNet.core
  
             return db.SaveChanges() > 0;
         }
- 
+       public async Task<int> UpdateAsync(T entity, string[] fieldNames)
+        {
+           
+                if (fieldNames != null && fieldNames.Length > 0)
+                {
+                    db.Set<T>().Attach(entity);
+                    foreach (var item in fieldNames)
+                    {
+                        db.Entry<T>(entity).Property(item).IsModified = true;
+                    }
+                }
+                else
+                {
+                    db.Entry<T>(entity).State = EntityState.Modified;
+                }
+
+                return await db.SaveChangesAsync();
+            
+        }
         public virtual bool Delete(T entity)
         {
             db.Entry(entity).State = EntityState.Deleted;
@@ -54,7 +74,12 @@ namespace MVC_DotNet.core
             return db.SaveChanges();
  
         }
- 
+       public T GetModel(Func<T, bool> whereLambda){
+           return db.Set<T>().AsNoTracking().FirstOrDefault(whereLambda);
+       }
+        public IEnumerable<T> GetList(Func<T, bool> whereLambda){
+           return db.Set<T>().AsNoTracking().Where(whereLambda).AsEnumerable();
+       }
         public IQueryable<T> LoadEntities(Func<T, bool> whereLambda)
         {
             return db.Set<T>().Where(whereLambda).AsQueryable();

@@ -10,10 +10,10 @@ namespace MVC_DotNet.Common
         private string connstr{ get; set; }
         public BooksContext(){
            // _optionsBuilder.UseMySQL("Server=localhost;Port=3306;Database=test; User=root;Password=;"); 
-           var hostname = "XPHP0004\\HALY";
+           var hostname = "X7IBH6D8QPECHMU";
            var username="haly";
             var password = "admin";
-            var connString = $"Data Source={hostname};Initial Catalog=test;User ID={username};Password={password};pooling=false";
+            var connString = $"Data Source={hostname};Initial Catalog=test;User ID={username};Password={password};pooling=false;Packet Size=512";
            //_optionsBuilder.UseSqlServer(connString); 
            connstr=connString;
            
