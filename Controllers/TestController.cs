@@ -167,6 +167,15 @@ namespace MVC_DotNet.Controllers
 
             return Json(new {msg="",result=""});
         }
+        public JsonResult SelectRequest(){
+            var rows=Request.Query["rows"];var page=Request.Query["page"];
+            List<dynamic> ls=new List<dynamic>();
+            for (int i = 0; i < 15; i++)
+            {
+                ls.Add(new {id=i,name="ok",price="ok"});
+            }
+            return Json(new {rows=ls,total=100});
+        }
          protected override void Dispose(bool disposing)
         {
             db.Dispose();

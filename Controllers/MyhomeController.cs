@@ -90,5 +90,9 @@ namespace MVC_DotNet.Controllers
             }
               
         }
+         [AllowAnonymous]
+         public ActionResult Bootrap(){
+             return View();
+         }
     }
 }

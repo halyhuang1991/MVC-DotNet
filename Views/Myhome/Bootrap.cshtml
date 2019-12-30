@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.js"></script>
+<!-- Latest compiled and minified Locales -->
+<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="~/js/layer.js"></script>
+<link rel="stylesheet" href="~/css/default/layer.css"/>
+<table id="table"></table>
+
+<span>1</span>
+<script>
+  var arrs=[];
+  for(var i=0;i<100;i++){
+    arrs.push({
+    id: i,
+    name: 'Item '+i,
+    price: '$2'
+  });
+  }
+    $('#table').bootstrapTable({
+       toolbar: "#toolbar",
+        striped: true, //是否显示行间隔色
+        height:300,
+        sortable: true,
+         search: false,
+      pagination: true,
+      showColumns: true,
+      showRefresh: false,
+      pageNumber: 1,//初始化加载第一页，默认第一页
+        pageSize: 10,//每页的记录行数（*）
+        pageList: [10, 20, 30, 40],//可供选择的每页的行数（*），当记录条数大于最小可选择条数时才会出现
+        paginationPreText: '上一页',
+        paginationNextText: '下一页',
+  columns: [{
+    field: 'id',
+    title: 'Item ID'
+  }, {
+    field: 'name',
+    title: 'Item Name'
+  }, {
+    field: 'price',
+    title: 'Item Price'
+  },{
+        title:"操作",
+        events:{     //为按钮添加事件
+            "click #details":function(e,value,row,index){
+                alert("项目名称："+row.id);
+            }
+        },
+        formatter:function(value,row,index){     //把需要创建的按钮封装在函数中
+            return "<button class='btn btn-default' id=\"details\">详情</button>"
+        }
+     },{
+        title:"操作1",
+        events:{     //为按钮添加事件
+            "click #details1":function(e,value,row,index){
+              
+                layer.msg('hello'+row.id); 
+            }
+        },
+        formatter:function(value,row,index){     //把需要创建的按钮封装在函数中
+            return "<button class='btn btn-default' id=\"details1\">详情1</button>"
+        }
+     }
+],queryParams : function (params) {
+                    //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    var temp = {   
+                        rows: params.limit,                         //页面大小
+                        page: (params.offset / params.limit) + 1,   //页码
+                        sort: params.sort,      //排序列名  
+                        sortOrder: params.order //排位命令（desc，asc） 
+                    };
+                    console.log(temp,params)
+                    return temp;
+  },
+   data: arrs, 
+  ajaxOptions: {
+    xhrFields: {        //跨域
+            withCredentials: true
+        },
+        crossDomain: true
+        },
+        sidePagination : 'server',	showRefresh : true,//刷新按钮
+  ajax:function(request) {
+    $.ajax({
+                type:"GET",
+                url:'/test/SelectRequest',
+                contentType:'application/json;charset=utf-8',
+                dataType:'json',
+                data:request.data,
+                success:function (res, xhr) {
+                   request.success({
+                        row:res,total:100
+                    },null,xhr);
+                    $('#table').bootstrapTable('load', res);
+                },
+                    error:function(error){
+                        console.log(error);
+                    }
+            })
+  }
+})
+
+ 
+</script>

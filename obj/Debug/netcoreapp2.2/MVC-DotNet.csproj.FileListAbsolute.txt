@@ -19,3 +19,4 @@ e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\Resources\pos_prob_trans.json
 e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\Resources\prob_emit.json
 e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\Resources\prob_trans.json
 e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\MVC-DotNet.dll.config
+e:\Test\MVC-DotNet\bin\Debug\netcoreapp2.2\bts.json
