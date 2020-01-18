@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using JiebaNet.Segmenter;
-using Lucene.Net.Analysis;
-using Lucene.Net.Documents;
-using Lucene.Net.Index;
-using Lucene.Net.Store;
+// using Lucene.Net.Analysis;
+// using Lucene.Net.Documents;
+// using Lucene.Net.Index;
+// using Lucene.Net.Store;
 
 namespace MVC_DotNet.Common
 {

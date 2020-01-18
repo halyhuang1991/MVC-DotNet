@@ -176,6 +176,9 @@ namespace MVC_DotNet.Controllers
             }
             return Json(new {rows=ls,total=100});
         }
+        public ActionResult bq(){
+            return View();
+        }
          protected override void Dispose(bool disposing)
         {
             db.Dispose();

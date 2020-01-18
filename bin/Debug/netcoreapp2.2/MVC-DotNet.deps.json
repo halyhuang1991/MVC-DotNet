@@ -24,7 +24,6 @@
     ".NETCoreApp,Version=v2.2": {
       "MVC-DotNet/1.0.0": {
         "dependencies": {
-          "Lucene.Net": "3.0.3",
           "Microsoft.AspNetCore.All": "2.0.6",
           "Microsoft.AspNetCore.DataProtection.AzureStorage": "2.1.1",
           "Microsoft.AspNetCore.DataProtection.Redis": "0.4.1",
@@ -101,20 +100,6 @@
             "assetType": "native",
             "fileVersion": "0.0.0.0"
           }
-        }
-      },
-      "Lucene.Net/3.0.3": {
-        "dependencies": {
-          "SharpZipLib": "0.86.0"
-        },
-        "runtime": {
-          "lib/NET40/Lucene.Net.dll": {
-            "assemblyVersion": "3.0.3.0",
-            "fileVersion": "3.0.3.0"
-          }
-        },
-        "compile": {
-          "lib/NET40/Lucene.Net.dll": {}
         }
       },
       "Microsoft.ApplicationInsights/2.4.0": {
@@ -3003,17 +2988,6 @@
           }
         }
       },
-      "SharpZipLib/0.86.0": {
-        "runtime": {
-          "lib/20/ICSharpCode.SharpZipLib.dll": {
-            "assemblyVersion": "0.86.0.518",
-            "fileVersion": "0.86.0.518"
-          }
-        },
-        "compile": {
-          "lib/20/ICSharpCode.SharpZipLib.dll": {}
-        }
-      },
       "SQLitePCLRaw.bundle_green/1.1.7": {
         "dependencies": {
           "SQLitePCLRaw.core": "1.1.7",
@@ -4452,13 +4426,6 @@
       "path": "libuv/1.10.0",
       "hashPath": "libuv.1.10.0.nupkg.sha512"
     },
-    "Lucene.Net/3.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-A/70q4eDcuuafQeDB9eaiDP9FQG7X29T4VIYRphS7Wk8kAM9gNcfVqYyd0H8BJ1BTpA5C1ORm9RzFn4BiNavrw==",
-      "path": "lucene.net/3.0.3",
-      "hashPath": "lucene.net.3.0.3.nupkg.sha512"
-    },
     "Microsoft.ApplicationInsights/2.4.0": {
       "type": "package",
       "serviceable": true,
@@ -5767,13 +5734,6 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
-    },
-    "SharpZipLib/0.86.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-5DbS1SlKLMi+WG00Cm0ueYf2oyXJrowETQk8nx96rmdjTuHsA3laPykGV7Sxi0R5Xxfx0Kh/EfacAZ1f6M7y/g==",
-      "path": "sharpziplib/0.86.0",
-      "hashPath": "sharpziplib.0.86.0.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_green/1.1.7": {
       "type": "package",
